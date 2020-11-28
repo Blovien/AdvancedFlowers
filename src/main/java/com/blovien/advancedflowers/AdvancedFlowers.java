@@ -1,5 +1,7 @@
 package com.blovien.advancedflowers;
 
+import com.blovien.advancedflowers.gui.FlowerSection;
+import com.blovien.advancedflowers.gui.FlowerSectionStore;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -10,27 +12,37 @@ public final class AdvancedFlowers extends JavaPlugin {
 
     private Config configuration;
     private FlowerGui gui;
+    private FlowerLogger logger;
+    private FlowerSectionStore sectionStore;
 
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onEnable() {
+        this.logger = new FlowerLogger(this);
+
         try {
             Class.forName("com.destroystokyo.paper.profile.PlayerProfile");
         } catch (ClassNotFoundException e) {
-            getLogger().info(ChatColor.RED + "You must use PaperSpigot to use this plugin!");
+            this.logger.info(ChatColor.RED + "You must use PaperSpigot to use this plugin!");
             getServer().getPluginManager().disablePlugin(this);
         }
 
+        this.logger.info(ChatColor.GREEN + "Enabling " + getName() + " " + getDescription().getVersion());
         // Setup
+        this.saveDefaultConfig();
         this.configuration = new Config(this);
-        this.getCommand("createflower").setExecutor(this);
 
-        this.gui = new FlowerGui();
+        this.sectionStore = new FlowerSectionStore();
+        sectionStore.registerSections();
+        this.gui = new FlowerGui().create();
+
+        this.getCommand("createflower").setExecutor(this);
+        this.logger.info(ChatColor.GREEN + "Enabled!");
     }
 
     @Override
     public void onDisable() {
-
+        this.logger.info(ChatColor.RED + "Disabling...");
     }
 
     @Override
@@ -51,5 +63,13 @@ public final class AdvancedFlowers extends JavaPlugin {
 
     public FlowerGui getGui() {
         return gui;
+    }
+
+    public Config getConfiguration() {
+        return configuration;
+    }
+
+    public FlowerLogger getFlowerLogger() {
+        return logger;
     }
 }
