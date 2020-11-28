@@ -1,0 +1,12 @@
+gui-title: "Advanced Flower creator"
+
+button-name:
+  tree: "Tree selector"
+  small-flower: "Small flower (1 block tall)"
+  tall-flower: "Tall flower (2 blocks tall)"
+  misc: "Misc selector"
+
+  reset: "Reset selection"
+  remove-top: "Remove top layer"
+  create: "Create advanced flower"
+  close: "Close GUI"

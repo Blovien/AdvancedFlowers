@@ -1,6 +1,14 @@
 name: Advancedflowers
 version: ${project.version}
-main: com.blovien.advancedflowers.Advancedflowers
+main: com.blovien.advancedflowers.AdvancedFlowers
 api-version: 1.16
 authors: [ Blovien ]
 description: Create custom flowers
+
+commands:
+  createflower:
+    usage: /createflower
+    aliases: [createadvancedflower, cf]
+    description: Open the AdvancedFlower gui
+    permission: advancedflowers.create
+    permission-message: You don't have permission to use this command.
