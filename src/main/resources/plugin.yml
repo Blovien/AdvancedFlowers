@@ -1,4 +1,4 @@
-name: Advancedflowers
+name: AdvancedFlowers
 version: ${project.version}
 main: com.blovien.advancedflowers.AdvancedFlowers
 api-version: 1.16

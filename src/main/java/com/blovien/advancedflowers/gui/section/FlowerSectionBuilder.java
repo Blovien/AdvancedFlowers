@@ -1,23 +1,24 @@
-package com.blovien.advancedflowers.gui;
+package com.blovien.advancedflowers.gui.section;
 
+import com.blovien.advancedflowers.item.FlowerItems;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
+import java.util.List;
 
 public class FlowerSectionBuilder {
 
-    private ItemStack selector;
-    private Collection<ItemStack> flowers;
+    private FlowerItems item;
+    private List<ItemStack> flowers;
 
     FlowerSectionBuilder() {
         this.flowers = new ArrayList<>();
     }
 
-    public FlowerSectionBuilder selector(ItemStack selector) {
-        this.selector = selector;
+    public FlowerSectionBuilder item(FlowerItems item) {
+        this.item = item;
         return this;
     }
 
@@ -37,10 +38,10 @@ public class FlowerSectionBuilder {
     }
 
     public FlowerSection build() {
-        if (selector == null) {
+        if (item == null) {
             throw new RuntimeException("Item selector must be specified");
         }
 
-        return new FlowerSection(selector, flowers);
+        return new FlowerSection(item, flowers);
     }
 }

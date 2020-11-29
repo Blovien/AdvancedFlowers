@@ -1,32 +1,38 @@
 package com.blovien.advancedflowers;
 
-import com.blovien.advancedflowers.gui.FlowerSection;
-import com.blovien.advancedflowers.gui.FlowerSectionStore;
+import com.blovien.advancedflowers.gui.FlowerGui;
+import com.blovien.advancedflowers.gui.FlowerGuiSession;
+import com.blovien.advancedflowers.gui.section.FlowerSectionStore;
+import com.blovien.advancedflowers.listeners.GuiListener;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.slf4j.Logger;
 
 public final class AdvancedFlowers extends JavaPlugin {
 
     private Config configuration;
-    private FlowerGui gui;
-    private FlowerLogger logger;
+    private FlowerGuiSession guiSession;
     private FlowerSectionStore sectionStore;
+    private Logger logger;
+
+    private static AdvancedFlowers INSTANCE;
 
     @Override
     @SuppressWarnings("ConstantConditions")
     public void onEnable() {
-        this.logger = new FlowerLogger(this);
 
         try {
             Class.forName("com.destroystokyo.paper.profile.PlayerProfile");
         } catch (ClassNotFoundException e) {
-            this.logger.info(ChatColor.RED + "You must use PaperSpigot to use this plugin!");
+            getLogger().info(ChatColor.RED + "You must use PaperSpigot to use this plugin!");
             getServer().getPluginManager().disablePlugin(this);
         }
 
+        INSTANCE = this;
+        this.logger = getSLF4JLogger();
         this.logger.info(ChatColor.GREEN + "Enabling " + getName() + " " + getDescription().getVersion());
         // Setup
         this.saveDefaultConfig();
@@ -34,9 +40,11 @@ public final class AdvancedFlowers extends JavaPlugin {
 
         this.sectionStore = new FlowerSectionStore();
         sectionStore.registerSections();
-        this.gui = new FlowerGui().create();
+        this.guiSession = new FlowerGuiSession();
 
+        this.getServer().getPluginManager().registerEvents(new GuiListener(this), this);
         this.getCommand("createflower").setExecutor(this);
+
         this.logger.info(ChatColor.GREEN + "Enabled!");
     }
 
@@ -53,23 +61,25 @@ public final class AdvancedFlowers extends JavaPlugin {
             return false;
         }
 
-        if (command.getName().equalsIgnoreCase("createflower")) {
-            ((Player) sender).openInventory(gui.getInventory());
-            return true;
-        }
-
-        return false;
-    }
-
-    public FlowerGui getGui() {
-        return gui;
+        Player player = (Player) sender;
+        this.guiSession.addInventory(player, new FlowerGui(player).createGUI());
+        this.guiSession.openInventory(player);
+        return true;
     }
 
     public Config getConfiguration() {
         return configuration;
     }
 
-    public FlowerLogger getFlowerLogger() {
-        return logger;
+    public FlowerSectionStore getSectionStore() {
+        return sectionStore;
+    }
+
+    public FlowerGuiSession getGuiStorage() {
+        return guiSession;
+    }
+
+    public static AdvancedFlowers getInstance() {
+        return INSTANCE;
     }
 }
