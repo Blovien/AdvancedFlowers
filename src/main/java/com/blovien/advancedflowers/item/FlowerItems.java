@@ -11,7 +11,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 import java.util.Arrays;
 import java.util.UUID;
 
-import static com.blovien.advancedflowers.Config.Values.*;
+import static com.blovien.advancedflowers.utils.Config.Values.*;
 
 public enum FlowerItems {
     LEFT_DIVISOR(Material.LIME_STAINED_GLASS_PANE),

@@ -1,4 +1,4 @@
-package com.blovien.advancedflowers;
+package com.blovien.advancedflowers.utils;
 
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -16,6 +16,7 @@ public class Config {
 
     public enum Values {
         GUI_TITLE("gui-title"),
+        POT_TITLE("pot-title"),
 
         TREE_BUTTON_NAME("button-name.tree"),
         SMALL_FLOWER_NAME("button-name.small-flower"),

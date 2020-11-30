@@ -1,8 +1,7 @@
 package com.blovien.advancedflowers.gui;
 
-import com.blovien.advancedflowers.Config;
-import com.blovien.advancedflowers.FlowerCreator;
-import com.blovien.advancedflowers.Vector2;
+import com.blovien.advancedflowers.utils.Config;
+import com.blovien.advancedflowers.utils.Vector2;
 import com.blovien.advancedflowers.gui.section.FlowerSection;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -20,8 +19,11 @@ public class FlowerGui {
     private final byte size = width * height;
     private final Inventory inventory;
 
+    private FlowerCreator flowerCreator;
+
     public FlowerGui(Player player) {
         this.inventory = Bukkit.createInventory(player, size, title);
+        this.flowerCreator = new FlowerCreator(inventory);
     }
 
     public FlowerGui createGUI() {
@@ -47,29 +49,33 @@ public class FlowerGui {
         inventory.setItem(7, MISC_SELECTOR.getItemStack());
 
         // Setting advanced flower editor
-        inventory.setItem(Vector2.toIndex(0, 4), RESET_ACTION.getItemStack());
-        inventory.setItem(Vector2.toIndex(0, 5), REMOVE_TOP_ACTION.getItemStack());
-        inventory.setItem(Vector2.toIndex(0, 6), CREATE_ACTION.getItemStack());
-        inventory.setItem(Vector2.toIndex(0, 8), CLOSE_ACTION.getItemStack());
+        inventory.setItem(Vector2.toIndex(4, 0), RESET_ACTION.getItemStack());
+        inventory.setItem(Vector2.toIndex(5, 0), REMOVE_TOP_ACTION.getItemStack());
+        inventory.setItem(Vector2.toIndex(6, 0), CREATE_ACTION.getItemStack());
+        inventory.setItem(Vector2.toIndex(8, 0), CLOSE_ACTION.getItemStack());
         return this;
     }
 
     public void fillSection(FlowerSection section) {
         int flowerPosition = 0;
 
-        for (int i = 2*width + 3; i < 3*width; i++) {
+        for (int i = Vector2.toIndex(3, 3); i <= Vector2.toIndex(8, 3); i++) {
             inventory.setItem(i, new ItemStack(Material.AIR));
             inventory.setItem(i, section.getFlowers().get(flowerPosition));
             flowerPosition++;
         }
 
-        for (int i = Vector2.toIndex(2, 3); i < Vector2.toIndex(8, 3); i++) {
+        for (int i = Vector2.toIndex(3, 2); i <= Vector2.toIndex(8, 2); i++) {
             inventory.setItem(i, new ItemStack(Material.AIR));
             if (flowerPosition < section.getFlowers().size()) {
                 inventory.setItem(i, section.getFlowers().get(flowerPosition));
                 flowerPosition++;
             }
         }
+    }
+
+    public FlowerCreator getFlowerCreator() {
+        return flowerCreator;
     }
 
     public String getTitle() {

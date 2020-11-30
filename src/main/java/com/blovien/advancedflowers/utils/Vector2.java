@@ -1,6 +1,4 @@
-package com.blovien.advancedflowers;
-
-import java.util.Iterator;
+package com.blovien.advancedflowers.utils;
 
 public class Vector2 {
 
@@ -10,14 +8,6 @@ public class Vector2 {
     public Vector2(int x, int y) {
         this.x = x;
         this.y = y;
-    }
-
-    public static boolean checkYBounds(int result) {
-        return result >= 0 && result <= 5;
-    }
-
-    public static boolean checkXBounds(int result) {
-        return result >= 0 && result <= 8;
     }
 
     public static Vector2 vectorFromIndex(int index) {
@@ -35,7 +25,7 @@ public class Vector2 {
     }
 
     public int toIndex() {
-        return this.x + (54-this.y*9);
+        return this.x + (54-(this.y+1)*9);
     }
 
     public void sub(int x, int y) {
@@ -44,15 +34,11 @@ public class Vector2 {
     }
 
     public void subY(int y) {
-        if (checkYBounds(this.y - y)) {
-            this.y -= y;
-        }
+        this.y -= y;
     }
 
     public void subX(int x) {
-        if (checkXBounds(this.x - x)) {
-            this.x -= x;
-        }
+        this.x -= x;
     }
 
     public void add(int x, int y) {
@@ -61,15 +47,11 @@ public class Vector2 {
     }
 
     public void addY(int y) {
-        if (checkYBounds(this.y + y)) {
-            this.y += y;
-        }
+        this.y += y;
     }
 
     public void addX(int x) {
-        if (checkXBounds(this.x + x)) {
-            this.x += x;
-        }
+        this.x += x;
     }
 
     public int getX() {

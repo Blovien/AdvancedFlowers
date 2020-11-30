@@ -4,6 +4,7 @@ import com.blovien.advancedflowers.gui.FlowerGui;
 import com.blovien.advancedflowers.gui.FlowerGuiSession;
 import com.blovien.advancedflowers.gui.section.FlowerSectionStore;
 import com.blovien.advancedflowers.listeners.GuiListener;
+import com.blovien.advancedflowers.utils.Config;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
