@@ -1,8 +1,8 @@
 package com.blovien.advancedflowers.gui;
 
+import com.blovien.advancedflowers.gui.section.FlowerSection;
 import com.blovien.advancedflowers.utils.Config;
 import com.blovien.advancedflowers.utils.Vector2;
-import com.blovien.advancedflowers.gui.section.FlowerSection;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

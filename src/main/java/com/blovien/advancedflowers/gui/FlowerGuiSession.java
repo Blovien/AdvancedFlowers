@@ -1,7 +1,6 @@
 package com.blovien.advancedflowers.gui;
 
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.Inventory;
 
 import java.util.Collections;
 import java.util.HashMap;
