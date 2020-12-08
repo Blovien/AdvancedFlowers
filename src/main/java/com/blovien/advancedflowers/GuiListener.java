@@ -97,8 +97,7 @@ public class GuiListener implements Listener {
             event.setCancelled(true);
             Location location = event.getBlockPlaced().getLocation();
 
-            Bukkit.getScheduler().scheduleSyncDelayedTask(
-                    plugin,
+            Bukkit.getScheduler().scheduleSyncDelayedTask(plugin,
                     () -> item.getLore().stream()
                         .map(m -> Material.getMaterial(m.substring(2)))
                         .sorted(Collections.reverseOrder())

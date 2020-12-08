@@ -7,5 +7,5 @@ description: Create custom flowers
 
 commands:
   createflower:
-    aliases: [createadvancedflower, cf]
+    aliases: [advancedflower, createadvancedflower, cf]
     description: Open the AdvancedFlower gui

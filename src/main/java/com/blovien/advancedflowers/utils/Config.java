@@ -11,6 +11,7 @@ public class Config {
     private static FileConfiguration config;
 
     public static final String COMMAND_PERMISSION = "createflower.use";
+    public static final String RELOAD_PERMISSION = "createflower.use.reload";
 
     public Config(JavaPlugin plugin) {
         config = plugin.getConfig();
