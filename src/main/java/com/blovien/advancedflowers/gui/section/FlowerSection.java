@@ -1,9 +1,8 @@
 package com.blovien.advancedflowers.gui.section;
 
-import com.blovien.advancedflowers.item.FlowerItems;
+import com.blovien.advancedflowers.gui.FlowerItems;
 import org.bukkit.inventory.ItemStack;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class FlowerSection {

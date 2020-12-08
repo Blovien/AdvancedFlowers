@@ -1,14 +1,9 @@
 package com.blovien.advancedflowers;
 
-import com.blovien.advancedflowers.gui.FlowerGui;
 import com.blovien.advancedflowers.gui.FlowerGuiSession;
 import com.blovien.advancedflowers.gui.section.FlowerSectionStore;
-import com.blovien.advancedflowers.listeners.GuiListener;
 import com.blovien.advancedflowers.utils.Config;
 import org.bukkit.ChatColor;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.slf4j.Logger;
 
@@ -18,8 +13,6 @@ public final class AdvancedFlowers extends JavaPlugin {
     private FlowerGuiSession guiSession;
     private FlowerSectionStore sectionStore;
     private Logger logger;
-
-    private static AdvancedFlowers INSTANCE;
 
     @Override
     @SuppressWarnings("ConstantConditions")
@@ -32,11 +25,11 @@ public final class AdvancedFlowers extends JavaPlugin {
             getServer().getPluginManager().disablePlugin(this);
         }
 
-        INSTANCE = this;
+        // Starting...
         this.logger = getSLF4JLogger();
-        this.logger.info(ChatColor.GREEN + "Enabling " + getName() + " " + getDescription().getVersion());
         // Setup
         this.saveDefaultConfig();
+        //noinspection InstantiationOfUtilityClass
         this.configuration = new Config(this);
 
         this.sectionStore = new FlowerSectionStore();
@@ -44,28 +37,9 @@ public final class AdvancedFlowers extends JavaPlugin {
         this.guiSession = new FlowerGuiSession();
 
         this.getServer().getPluginManager().registerEvents(new GuiListener(this), this);
-        this.getCommand("createflower").setExecutor(this);
+        this.getCommand("createflower").setExecutor(new FlowerCommand(this));
 
         this.logger.info(ChatColor.GREEN + "Enabled!");
-    }
-
-    @Override
-    public void onDisable() {
-        this.logger.info(ChatColor.RED + "Disabling...");
-    }
-
-    @Override
-    @SuppressWarnings("NullableProblems")
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This command is only for players!");
-            return false;
-        }
-
-        Player player = (Player) sender;
-        this.guiSession.addInventory(player, new FlowerGui(player).createGUI());
-        this.guiSession.openInventory(player);
-        return true;
     }
 
     public Config getConfiguration() {
@@ -78,9 +52,5 @@ public final class AdvancedFlowers extends JavaPlugin {
 
     public FlowerGuiSession getGuiStorage() {
         return guiSession;
-    }
-
-    public static AdvancedFlowers getInstance() {
-        return INSTANCE;
     }
 }

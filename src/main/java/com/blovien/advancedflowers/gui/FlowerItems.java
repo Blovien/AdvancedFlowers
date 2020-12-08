@@ -1,4 +1,4 @@
-package com.blovien.advancedflowers.item;
+package com.blovien.advancedflowers.gui;
 
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
@@ -21,6 +21,7 @@ public enum FlowerItems {
     SMALL_FLOWER_SELECTOR(SMALL_FLOWER_NAME.buttonString(), Material.DANDELION),
     TALL_FLOWER_SELECTOR(TALL_FLOWER_NAME.buttonString(),Material.SUNFLOWER),
     MISC_SELECTOR(MISC_BUTTON_NAME.buttonString(), Material.CACTUS),
+    CORAL_SELECTOR(CORAL_BUTTON_NAME.buttonString(), Material.FIRE_CORAL),
 
     RESET_ACTION(createHeadFromTexture(RESET_BUTTON_NAME.buttonString(),
             "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvYmViNTg4YjIxYTZmOThhZDFmZjRlMDg1YzU1MmRjYjA1MGVmYzljYWI0MjdmNDYwNDhmMThmYzgwMzQ3NWY3In19fQ==")),

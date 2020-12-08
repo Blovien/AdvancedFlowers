@@ -1,6 +1,6 @@
 package com.blovien.advancedflowers.gui.section;
 
-import com.blovien.advancedflowers.item.FlowerItems;
+import com.blovien.advancedflowers.gui.FlowerItems;
 
 import java.util.Collections;
 import java.util.HashMap;

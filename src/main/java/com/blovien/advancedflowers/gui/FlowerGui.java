@@ -9,7 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
-import static com.blovien.advancedflowers.item.FlowerItems.*;
+import static com.blovien.advancedflowers.gui.FlowerItems.*;
 
 public class FlowerGui {
 
@@ -47,6 +47,7 @@ public class FlowerGui {
         inventory.setItem(5, SMALL_FLOWER_SELECTOR.getItemStack());
         inventory.setItem(6, TALL_FLOWER_SELECTOR.getItemStack());
         inventory.setItem(7, MISC_SELECTOR.getItemStack());
+        inventory.setItem(8, CORAL_SELECTOR.getItemStack());
 
         // Setting advanced flower editor
         inventory.setItem(Vector2.toIndex(4, 0), RESET_ACTION.getItemStack());

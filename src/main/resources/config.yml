@@ -1,11 +1,14 @@
 gui-title: "Advanced Flower creator"
 pot-title: "Advanced Flower"
 
+stop-dying-corals: true
+
 button-name:
   tree: "Tree selector"
   small-flower: "Small flower (1 block tall)"
   tall-flower: "Tall flower (2 blocks tall)"
   misc: "Misc selector"
+  coral: "Coral selector"
 
   reset: "Reset selection"
   remove-top: "Remove top layer"
